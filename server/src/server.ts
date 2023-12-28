@@ -26,19 +26,17 @@ const server = http.createServer(async (req, res) => {
   res.setHeader("Content-Type", "application/json");
 
   switch (req.url) {
-    // respond to querying domain root (like http://localhost/)
     case "/":
       const database = await notion.databases.query({
         database_id: notionDatabaseId,
       });
 
       const randomIndex = getRandomIndex(0, database.results.length);
-
-      console.log(database.results[randomIndex])
+      const randomEntry = database.results[randomIndex];
 
       res.setHeader("Content-Type", "application/json");
       res.writeHead(200);
-      res.end(JSON.stringify(database.results[randomIndex]));
+      res.end(JSON.stringify(randomEntry));
       break;
 
     // support only the / route
