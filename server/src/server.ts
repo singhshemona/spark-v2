@@ -20,6 +20,19 @@ const getRandomIndex = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min) + min);
 };
 
+const getBlocks = async (block_id: string) => {
+  const response = await notion.blocks.children.list({
+    block_id,
+    page_size: 50,
+  });
+  return response.results;
+};
+
+const getPage = async (page_id: string) => {
+  const response = await notion.pages.retrieve({ page_id });
+  return response;
+};
+
 const server = http.createServer(async (req, res) => {
   // Avoid CORS errors
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -31,12 +44,42 @@ const server = http.createServer(async (req, res) => {
         database_id: notionDatabaseId,
       });
 
-      const randomIndex = getRandomIndex(0, database.results.length);
-      const randomEntry = database.results[randomIndex];
+      const results = database.results;
+      const randomIndex = getRandomIndex(0, results.length);
+      let block = results[randomIndex];
+
+      // if the Source's relation array is empty it is
+      // a start card and therefore cannot be used
+      // so we need to pick another card that has a source
+      // @ts-ignore - figure out why I need this
+      if (block.properties.Source.relation.length === 0) {
+        block = results[randomIndex + 1];
+      }
+
+      const blockId = block.id;
+      const sourceId =
+        // @ts-ignore
+        block.properties.Source.relation[0].id;
+
+      // GET TITLE
+      const title = block.properties.Title;
+
+      // GET QUOTE
+      const quote = await getBlocks(blockId);
+
+      // GET SOURCE
+      const source = await getPage(sourceId);
+
+      // store all data in here and eventually return this
+      const allContent = {
+        title,
+        quote,
+        source,
+      };
 
       res.setHeader("Content-Type", "application/json");
       res.writeHead(200);
-      res.end(JSON.stringify(randomEntry));
+      res.end(JSON.stringify(allContent));
       break;
 
     // support only the / route
