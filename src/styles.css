@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+body {
+  margin: 100px 200px 50px 200px;
+  font-family: "Lato", sans-serif;
+  background: #F9F5ED;
+}
+
+h1 {
+  color: #d4a373;
+}
+
+h3 {
+  font-weight: normal;
+}
+
+.description {
+  color: #808080;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+button {
+  margin-bottom: 20px;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.quote {
+  font-family: 'Indie Flower', cursive;
+  border-left: 2px solid #D4A373;
+  padding-left: 15px;
+  margin: 20px 45px 20px 30px;
+  font-size: 22px;
+}
+
+.source {
+  margin-left: 20px;
+}

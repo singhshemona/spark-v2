@@ -64,6 +64,10 @@ const server = http.createServer(async (req, res) => {
       // GET TITLE
       const title = block.properties.Title;
 
+      // GET LINK
+      // @ts-ignore
+      const link = block.public_url;
+
       // GET QUOTE
       const quote = await getBlocks(blockId);
 
@@ -75,6 +79,7 @@ const server = http.createServer(async (req, res) => {
         title,
         quote,
         source,
+        link,
       };
 
       res.setHeader("Content-Type", "application/json");

@@ -1,8 +1,8 @@
 export const Introduction = () => {
   return (
     <>
-      <h1>✨ Welcome to Spark ✨</h1>
-      <h3>
+      <h1>Spark</h1>
+      <h3 className="description">
         This is a tool to retrieve{" "}
         <a
           href="https://shemonasingh.com/applying-zettelkasten-to-notion"
