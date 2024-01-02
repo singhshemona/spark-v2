@@ -1,3 +1,6 @@
+// inspiration from: 
+// https://dev.to/alexeagleson/how-to-connect-a-react-app-to-a-notion-database-51mc
+
 import http from "http";
 import { Client } from "@notionhq/client";
 require("dotenv").config();
