@@ -19,8 +19,16 @@ export const Introduction = () => {
         >
           slip-box
         </a>{" "}
-        of growing highlights. Click on the "New Spark" button for a different
-        highlight.
+        of growing highlights. In order for it to work, you must run the server
+        by following the instructions{" "}
+        <a
+          href="https://github.com/singhshemona/spark-v2"
+          target="_blank"
+          rel="noreferrer"
+        >
+          outlined in the repo here
+        </a>
+        . Click on the "New Spark" button for a different highlight.
       </h3>
     </>
   );
