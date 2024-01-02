@@ -1,14 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300&display=swap');
+
+body, button {
+  font-family: "Lato", sans-serif;
+}
 
 body {
-  margin: 100px 200px 50px 200px;
-  font-family: "Lato", sans-serif;
   background: #F9F5ED;
+  max-width: 600px;
+  margin: 60px auto 30px auto;
 }
 
 h1 {
-  color: #d4a373;
+  color: #D4A373;
 }
 
 h3 {
@@ -16,27 +20,74 @@ h3 {
 }
 
 .description {
-  color: #808080;
+  color: #7B7B7B;
   font-size: 16px;
   line-height: 24px;
 }
 
-button {
-  margin-bottom: 20px;
+.content {
+  margin-top: 40px;
 }
 
-.title {
+button {
+  padding: 8px 10px;
+  background: #AAB977;
+  border: 0;
+  border-radius: 4px;
+  color: #F9F5ED;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:disabled {
+  cursor: initial;
+  opacity: .7;
+}
+
+.title, 
+.source {
   font-weight: bold;
 }
 
 .quote {
-  font-family: 'Indie Flower', cursive;
-  border-left: 2px solid #D4A373;
+  font-family: 'Kalam', cursive;
+  border-left: 2px solid #E3C4A5;
   padding-left: 15px;
   margin: 20px 45px 20px 30px;
   font-size: 22px;
 }
 
-.source {
-  margin-left: 20px;
+a {
+  color: #9EB065;
 }
+
+.loader {
+  display: flex;
+  justify-content: center;
+}
+
+.loader > div {
+  width: 16px;
+  height: 16px;
+  margin: 3px 6px;
+  border-radius: 50%;
+  background-color: #D4A373;
+  opacity: 1;
+  animation: bounce 0.6s infinite alternate;
+}
+
+.loader > div:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loader > div:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  to {
+    opacity: 0.1;
+    transform: translateY(-16px);
+  }
+}
+

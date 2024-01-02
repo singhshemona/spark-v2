@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Introduction } from "./components";
+import { Introduction, Loader } from "./components";
 import "./styles.css";
 
 export const App = () => {
@@ -22,38 +22,34 @@ export const App = () => {
             .then((response) => response.json())
             .then((payload) => {
               if (payload) {
-                const title = payload.title.title[0].plain_text;
-                const quote = payload.quote[0].paragraph.text[0].plain_text;
-                const link = payload.link;
-
-                const { Medium, Title } = payload.source.properties;
-                const { emoji } = payload.source.icon.emoji;
-
-                const source =
-                  Medium.select !== undefined || null
-                    ? `${Medium.select.name}, ${Title.title[0].plain_text}`
-                    : `${emoji}, ${Title.title[0].plain_text}`;
-
-                setTitle(title);
-                setQuote(quote);
-                setLink(link);
-                setSource(source);
+                setTitle(payload.title.title[0].plain_text);
+                setQuote(payload.quote[0].paragraph.text[0].plain_text);
+                setSource(payload.source.properties.Title.title[0].plain_text);
+                setLink(payload.link);
               }
             })
             .catch((error) => console.log(error))
             .then(() => setLoading(false));
         }}
       >
-        {loading ? "Loading..." : "New page"}
+        Load new spark
       </button>
-      {title && <p className="title">{title}</p>}
-      {quote && <p className="quote">{quote}</p>}
-      {source && <p className="source">Source: {source}</p>}
-      {link && (
-        <a href={link} target="_blank" rel="noreferrer">
-          Link to page
-        </a>
-      )}
+      <div className="content">
+        {loading ? (
+          <Loader />
+        ) : (
+          <>
+            {title && <p className="title">{title}</p>}
+            {quote && <p className="quote">{quote}</p>}
+            {source && <p className="source">Source: {source}</p>}
+            {link && (
+              <a href={link} target="_blank" rel="noreferrer">
+                Link to Notion page &#x2197;
+              </a>
+            )}
+          </>
+        )}
+      </div>
     </div>
   );
 };
