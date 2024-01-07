@@ -19,7 +19,7 @@ export const App = () => {
         onClick={() => {
           setLoading(true);
 
-          fetch("http://localhost:8000/")
+          fetch("https://spark-v2-server.vercel.app/")
             .then((response) => response.json())
             .then((payload) => {
               if (payload) {
