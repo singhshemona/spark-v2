@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Introduction, Loader } from "./components";
 import "./styles.css";
+import React from "react";
 
 export const App = () => {
   const [title, setTitle] = useState<string>();
