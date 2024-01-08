@@ -21,7 +21,7 @@ export const Introduction = () => {
         >
           slip-box
         </a>{" "}
-        of growing highlights. Click on the "New Spark" button for a different highlight.
+        of growing highlights. Click on the "Load new spark" button for a different highlight.
       </h3>
     </>
   );
